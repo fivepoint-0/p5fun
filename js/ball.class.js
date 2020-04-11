@@ -28,10 +28,10 @@ class Ball {
             let d = dist(this.x, this.y, ball.x, ball.y)
             if (d < RADIUS) {
                 console.log('TOUCHING')
-                this.velX = this.velX * -1 * Math.floor(Math.random() * RADIUS)
-                ball.velX = ball.velX * -1 * Math.floor(Math.random() * RADIUS)
-                this.velY = this.velY * -1 * Math.floor(Math.random() * RADIUS)
-                ball.velY = ball.velY * -1 * Math.floor(Math.random() * RADIUS)
+                this.velX = this.velX * -1
+                ball.velX = ball.velX * -1
+                this.velY = this.velY * -1
+                ball.velY = ball.velY * -1
                 this.moveX(RADIUS)
                 this.moveY(RADIUS)
                 ball.moveX(RADIUS)
