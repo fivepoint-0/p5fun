@@ -1,16 +1,18 @@
-class Ball {
+let RADIUS = 25
+
+class Ball { 
 
     constructor(x, y) {
         this.x = x
         this.y = y
-        this.velX = Math.random()*10
-        this.velY = Math.random()*10
+        this.velX = Math.random()*20
+        this.velY = Math.random()*20
         this.hue = 0
     }
 
     draw () {
         fill(frameCount % 255, 255, 255)
-        circle(this.x, this.y, 50)
+        circle(this.x, this.y, RADIUS)
     }
 
     update () {
@@ -18,7 +20,24 @@ class Ball {
         this.moveX(this.velX)
         this.moveY(this.velY)
         fill(this.hue % 255, 255, 255)
-        circle(this.x, this.y, 50)
+        circle(this.x, this.y, RADIUS)
+    }
+
+    updateCollisions(balls) {
+        balls.forEach(ball => {
+            let d = dist(this.x, this.y, ball.x, ball.y)
+            if (d < RADIUS) {
+                console.log('TOUCHING')
+                this.velX = this.velX * -1 * Math.floor(Math.random() * RADIUS)
+                ball.velX = ball.velX * -1 * Math.floor(Math.random() * RADIUS)
+                this.velY = this.velY * -1 * Math.floor(Math.random() * RADIUS)
+                ball.velY = ball.velY * -1 * Math.floor(Math.random() * RADIUS)
+                this.moveX(RADIUS)
+                this.moveY(RADIUS)
+                ball.moveX(RADIUS)
+                ball.moveY(RADIUS)
+            }
+        })
     }
 
     moveX(n) {

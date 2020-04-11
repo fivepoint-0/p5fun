@@ -4,13 +4,13 @@ function setup () {
     createCanvas(400, 400)
     angleMode(DEGREES)
     background(0)
-    frameRate(60)
+    frameRate(10)
     colorMode(HSB, 255, 255, 255)
 }
 
 function draw () {
     background(0)
-
+    balls.forEach(ball => ball.updateCollisions(balls.filter((b, i, arr) => arr.indexOf(ball) != i)))
     balls.forEach(ball => ball.update())
     translate(width/2, height/2)
     
